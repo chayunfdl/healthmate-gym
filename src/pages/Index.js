@@ -15,6 +15,8 @@ import UnderConstruction from "./UnderConstruction";
 // import ComingSoon from "./ComingSoon"; // REMOVED - Component doesn't exist
 import Services from "./Services";
 import ServicesDetails from "./ServicesDetails";
+import ServicesDetailsBeratBadan from "./ServicesDetailsBeratBadan";
+import ServicesDetailsTubuhIdeal from "./ServicesDetailsTubuhIdeal";
 import BlogGrid from "./BlogGrid";
 import BlogLargeSidebar from "./BlogLargeSidebar";
 import BlogListSidebar from "./BlogListSidebar";
@@ -42,6 +44,8 @@ function Index() {
           {/* <Route path="/schedule" exact element={<Schedule />} /> */} {/* REMOVED - Component doesn't exist */}
           <Route path="/services" exact element={<Services />} />
           <Route path="/services-details" exact element={<ServicesDetails />} />
+          <Route path="/services-details-berat-badan" exact element={<ServicesDetailsBeratBadan />} />
+          <Route path="/services-details-tubuh-ideal" exact element={<ServicesDetailsTubuhIdeal />} />
           <Route path="/blog-grid" exact element={<BlogGrid />} />
           <Route
             path="/blog-large-sidebar"

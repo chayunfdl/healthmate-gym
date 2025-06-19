@@ -568,7 +568,7 @@ const Services = () => {
                 {/* Footer */}
                 <footer className="bg-gray-900 text-white py-8 mt-12">
                     <div className="max-w-7xl mx-auto px-4 text-center">
-                        <p>&copy; 2025 GymFinder. Temukan gym terbaik di sekitar Anda.</p>
+                        <p>© 2025 GymFinder. Temukan gym terbaik di sekitar Anda.</p>
                     </div>
                 </footer>
             </div>
@@ -583,9 +583,7 @@ const Services = () => {
                 {/* Enhanced GymFinder Section - Replaced with the complete new component */}
                 <GymFinder />
                 
-                <section className="content-inner-1 overflow-hidden" style={{backgroundImage: "url("+ IMAGES.BgImage1 +")"}}>
-                    <LatestSlider />
-                </section>  
+                {/* Bagian LatestSlider telah dihapus */}
             </div>   
         </>
     );

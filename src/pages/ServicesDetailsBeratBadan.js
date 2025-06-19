@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { IMAGES } from "../constants/theme";
 import PageTitle from "../elements/PageTitle";
 
-const ServicesDetails = () => {
+const ServicesDetailsBeratBadan = () => {
   return (
     <>
       <div className="page-content bg-white">
@@ -18,23 +18,20 @@ const ServicesDetails = () => {
                 <div className="dz-content">
                   <div className="m-b40">
                     <h2 className="title m-b15">
-                      Workout Berdasarkan Penyakit
+                      Workout Berdasarkan Berat Badan
                     </h2>
                   </div>
-
                   <div className="m-b40">
                     <h4 className="m-b15">
-                      Penyakit Jantung
+                      Menurunkan Berat Badan
                     </h4>
                     <ul className="list-check-2 m-b30">
                       <li>
-                        Senam Jantung untuk Pemula: Video ini menampilkan latihan ringan 
-                        yang cocok untuk penderita hipertensi dan penyakit jantung, dengan 
-                        gerakan sederhana yang dapat dilakukan di rumah.
+                        Aerobik Penurunan Berat Badan dalam 7 Hari: Membantu membakar lemak dan mengecilkan perut buncit.
                         <div className="video-container" style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: '15px' }}>
                           <iframe
-                            src="https://www.youtube.com/embed/YyFDQgLoynQ"
-                            title="Senam Jantung"
+                            src="https://www.youtube.com/embed/i-Nley4RLTE"
+                            title="aerobik"
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
@@ -43,13 +40,24 @@ const ServicesDetails = () => {
                         </div>
                       </li>
                       <li>
-                        Olahraga yang Tepat untuk Penderita Penyakit Jantung: Video ini 
-                        membahas jenis olahraga yang aman dan bermanfaat bagi penderita penyakit 
-                        jantung, disertai penjelasan dari dokter.
-                                                <div className="video-container" style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: '15px' }}>
+                        15 Menit Aerobik Penurunan Berat Badan: Membakar lemak dan kalori.
+                        <div className="video-container" style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: '15px' }}>
                           <iframe
-                            src="https://www.youtube.com/embed/gVqj5TwbrWc"
-                            title="Senam Jantung 2"
+                            src="https://www.youtube.com/embed/GnySCMUwra8"
+                            title="aerobik 2"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                          ></iframe>
+                        </div>
+                      </li>
+                      <li>
+                        30 Menit Workout Cardio untuk Membakar Lemak Seluruh Tubuh.
+                        <div className="video-container" style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: '15px' }}>
+                          <iframe
+                            src="https://www.youtube.com/embed/FbtdOrzBqn0"
+                            title="cardio"
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
@@ -61,79 +69,49 @@ const ServicesDetails = () => {
                   </div>
                   <div className="m-b40">
                     <h4 className="m-b15">
-                      Stroke
+                      Menaikkan Berat Badan
                     </h4>
-                    <p className="m-b0">
-                        Olahraga Tepat Pasca Stroke: Video ini memberikan panduan latihan fisik yang aman dan efektif 
-                        bagi penyintas stroke untuk membantu pemulihan fungsi tubuh.
-                      <div className="video-container" style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: '15px' }}>
+                    <ul className="list-check-2 m-b30">
+                      <li>
+                        15 Menit Olahraga Menambah Berat Badan dan Melatih Massa Otot.
+                        <div className="video-container" style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: '15px' }}>
                           <iframe
-                            src="https://www.youtube.com/embed/OHRgNlLTlds"
-                            title="Stroke"
+                            src="https://www.youtube.com/embed/GR5A8RHxRAw"
+                            title="naik badan"
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                             style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
                           ></iframe>
                         </div>
-                      </p>
-                  </div>
-                  <div className="m-b40">
-                    <h4 className="m-b15">
-                      Osteoarthritis & Nyeri Sendi
-                    </h4>
-                    <p className="m-b0">
-                        4 Jenis Olahraga untuk Kesehatan Otot dan Sendi: Video ini menjelaskan empat jenis olahraga yang 
-                        bermanfaat untuk menjaga kesehatan otot dan sendi, serta mencegah osteoarthritis.
-                      <div className="video-container" style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: '15px' }}>
+                      </li>
+                      <li>
+                        Latihan Olahraga Ringan Menambah Berat Badan! Badan Auto Berisi!
+                        <div className="video-container" style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: '15px' }}>
                           <iframe
-                            src="https://www.youtube.com/embed/EcDdcxy2L6s"
-                            title="Osteoarthritis & Nyeri Sendi"
+                            src="https://www.youtube.com/embed/SVMXa2FDh58"
+                            title="naik badan 2"
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                             style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
                           ></iframe>
                         </div>
-                      </p>
-                  </div>
-                  <div className="m-b40">
-                    <h4 className="m-b15">
-                      Gangguan Kecemasan
-                    </h4>
-                    <p className="m-b0">
-                        Olahraga yang Cocok untuk Pasien Cemas: Video ini membahas jenis olahraga yang dapat 
-                        membantu mengurangi gejala kecemasan dan meningkatkan kesehatan mental.
-                      <div className="video-container" style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: '15px' }}>
+                      </li>
+                      <li>
+                        SUKSES NAIK 28 KG BIKIN BADAN LEBIH IDEAL DAN BERISI
+                        <div className="video-container" style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: '15px' }}>
                           <iframe
-                            src="https://www.youtube.com/embed/G-Cm4XctN7M"
-                            title="Gangguan Kecemasan"
+                            src="https://www.youtube.com/embed/5QLTKaejgVs"
+                            title="naik badan 3"
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                             style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
                           ></iframe>
                         </div>
-                      </p>
-                  </div>
-                    <div className="m-b40">
-                    <h4 className="m-b15">
-                      Parkinson
-                    </h4>
-                    <p className="m-b0">
-                        Parkinson's Disease Exercises: Brain and Body: Video ini menampilkan latihan 
-                        yang dirancang khusus untuk penderita Parkinson, membantu meningkatkan koordinasi dan keseimbangan.
-                      <div className="video-container" style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: '15px' }}>
-                          <iframe
-                            src="https://www.youtube.com/embed/pWqext64kxM"
-                            title="Parkinson"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                          ></iframe>
-                        </div>
-                      </p>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -186,4 +164,4 @@ const ServicesDetails = () => {
   );
 };
 
-export default ServicesDetails;
+export default ServicesDetailsBeratBadan;

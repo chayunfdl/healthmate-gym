@@ -61,19 +61,6 @@ const Home = () => {
           </div>
         </section>
         
-        {/* Google Maps */}
-        <div className="map z-index-none">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d28896.531392443423!2d75.81462525569334!3d25.133445080066668!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x537f208422eb8f28!2sW3ITEXPERTS%20-%20Software%20Development%20Company%20in%20kota!5e0!3m2!1sen!2sin!4v1669897446044!5m2!1sen!2sin"
-            style={{
-              border: "0",
-              marginBottom: "-7px",
-              width: "100%",
-              height: "400px",
-            }}
-            loading="lazy"
-          ></iframe>
-        </div>
       </div>
     </>
   );

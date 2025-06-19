@@ -26,10 +26,6 @@ const HomebannerCard = () => {
                 <h4 className="dz-title m-b10">
                   <Link to={item.link}>{item.title}</Link>
                 </h4>
-                <p className="m-b15">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry.
-                </p>
                 <Link to={item.link} className="read-more">
                   Read More <i className="fa-solid fa-arrow-right"></i>
                 </Link>

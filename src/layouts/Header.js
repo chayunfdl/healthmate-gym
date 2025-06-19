@@ -96,11 +96,30 @@ export const Mainheader = () => {
     }
   };
 
-  // Filter menu untuk menghilangkan Pages, Portfolio, Blog
+  // Filter menu untuk menghilangkan Pages, Portfolio, Blog dan mengubah nama dropdown
   const filteredMenuArray = useMemo(() => {
     return MenuListArray2.filter(item => {
       const title = item.title.toLowerCase();
       return !['pages', 'portfolio', 'blog'].includes(title);
+    }).map(item => {
+        // Periksa apakah item menu utama adalah 'Services'
+        if (item.title.toLowerCase() === 'services') {
+            // Jika ya, ubah item di dalam dropdown (content)
+            const newContent = item.content.map(subItem => {
+                if (subItem.title.toLowerCase() === 'services') {
+                    // Ubah 'Services' menjadi 'Gym'
+                    return { ...subItem, title: 'Gym' };
+                }
+                if (subItem.title.toLowerCase() === 'services details') {
+                    // Ubah 'Services Details' menjadi 'Health Fitness'
+                    return { ...subItem, title: 'Health Fitness' };
+                }
+                return subItem; // Kembalikan sub-item lain tanpa perubahan
+            });
+            // Kembalikan item menu utama dengan konten yang sudah diubah
+            return { ...item, content: newContent };
+        }
+        return item; // Kembalikan item menu utama lain tanpa perubahan
     });
   }, []);
 
@@ -160,12 +179,6 @@ export const Mainheader = () => {
                 >
                   <i className="fa-solid fa-magnifying-glass"></i>
                 </button>
-                <Link
-                  to={"/appointment"}
-                  className="btn btn-primary btn-skew appointment-btn"
-                >
-                  <span>Appointment</span>
-                </Link>
               </div>
             </div>
             {/* <!-- Extra Nav --> */}
@@ -315,46 +328,6 @@ export const Mainheader = () => {
                   }
                 })}
               </ul>
-              <div className="dz-social-icon">
-                <ul>
-                  <li>
-                    <Link
-                      target="_blank"
-                      to="https://www.facebook.com/"
-                      rel="noreferrer"
-                    >
-                      <i className="fab fa-facebook-f"></i>
-                    </Link>
-                  </li>{" "}
-                  <li>
-                    <Link
-                      target="_blank"
-                      to="https://twitter.com/?lang=en"
-                      rel="noreferrer"
-                    >
-                      <i className="fab fa-twitter"></i>
-                    </Link>
-                  </li>{" "}
-                  <li>
-                    <Link
-                      target="_blank"
-                      to="https://www.linkedin.com/"
-                      rel="noreferrer"
-                    >
-                      <i className="fab fa-linkedin-in"></i>
-                    </Link>
-                  </li>{" "}
-                  <li>
-                    <Link
-                      target="_blank"
-                      to="https://www.instagram.com/?hl=en"
-                      rel="noreferrer"
-                    >
-                      <i className="fab fa-instagram"></i>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>
