@@ -4,6 +4,10 @@ export const MenuListArray2 = [
         to: '/', // Mengubah ke direct link tanpa submenu
         classChange: '', // Menghilangkan sub-menu-down
     },
+        {
+        title: 'Cari Gym',
+        to: '/find-gym', 
+    },
     {
         title: 'Services',
         classChange: 'sub-menu-down',
