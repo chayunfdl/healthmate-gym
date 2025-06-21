@@ -6,24 +6,10 @@ export const MenuListArray2 = [
     },
         {
         title: 'Cari Gym',
-        to: '/find-gym', 
+        to: '/services', 
     },
     {
-        title: 'Services',
-        classChange: 'sub-menu-down',
-        content: [
-            {
-                title: 'Services',
-                to: '/services',
-            },
-            {
-                title: 'Services Details',
-                to: '/services-details',
-            },
-        ],
-    },
-    {
-        title: 'Contact Us',
-        to: '/contact-us',
+        title: 'Health Fitness',
+        to: '/services-details',
     },
 ]

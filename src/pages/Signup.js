@@ -4,20 +4,23 @@ import { useAuth } from '../context/AuthContext';
 import { IMAGES } from '../constants/theme';
 
 const Signup = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
+    // --- State disesuaikan dengan kebutuhan backend ---
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    // Ambil state loading dan error dari context
+    const [email, setEmail] = useState(''); // Email tetap opsional atau sesuai kebutuhan
+
     const { signup, loading, error } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!name || !email || !password) {
-            alert('Please fill all fields');
+        // --- Validasi disesuaikan ---
+        if (!username || !password) {
+            alert('Please fill username and password fields');
             return;
         }
-        // Fungsi signup sekarang async
-        await signup(name, email, password);
+        // --- Pemanggilan signup disesuaikan ---
+        // Anda mungkin perlu menyesuaikan fungsi signup di AuthContext jika parameternya berubah
+        await signup(username, password); 
     };
 
     return (
@@ -33,18 +36,19 @@ const Signup = () => {
                             <div className="card-body">
                                 {error && <div className="alert alert-danger">{error}</div>}
                                 <form onSubmit={handleSubmit}>
+                                    {/* --- INPUT USERNAME DITAMBAHKAN --- */}
                                     <div className="mb-3">
-                                        <label className="form-label">Full Name</label>
+                                        <label className="form-label">Username</label>
                                         <input
                                             type="text"
                                             className="form-control"
-                                            value={name}
-                                            onChange={(e) => setName(e.target.value)}
-                                            placeholder="John Doe"
+                                            value={username}
+                                            onChange={(e) => setUsername(e.target.value)}
+                                            placeholder="Choose a username"
                                         />
                                     </div>
                                     <div className="mb-3">
-                                        <label className="form-label">Email address</label>
+                                        <label className="form-label">Email address (Optional)</label>
                                         <input
                                             type="email"
                                             className="form-control"

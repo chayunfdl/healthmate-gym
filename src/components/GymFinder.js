@@ -1,11 +1,11 @@
-// --- File: src/components/GymFinder.js (Versi Tanpa API Key) ---
+// --- File: src/components/GymFinder.js (Versi dengan Ikon Pin Dihapus) ---
 
 import React, { useState, useEffect } from 'react';
 
-// --- Komponen-komponen UI tidak berubah ---
+// --- Komponen-komponen UI ---
 
 const StatusDisplay = ({ icon, title, message }) => (
-    <div className="text-center py-16 px-6 bg-gray-100 rounded-2xl">
+    <div className="text-center py-16 px-6 bg-gray-100 rounded-2xl col-span-full">
         <div className="text-5xl mb-4">{icon}</div>
         <h3 className="text-xl font-bold text-gray-800 mb-2">{title}</h3>
         <p className="text-gray-600">{message}</p>
@@ -13,39 +13,71 @@ const StatusDisplay = ({ icon, title, message }) => (
 );
 
 const GymCardSkeleton = () => (
-    <div className="bg-white rounded-2xl shadow-md p-5 animate-pulse">
-        <div className="h-6 bg-gray-300 rounded w-3/4 mb-3"></div>
-        <div className="h-4 bg-gray-200 rounded w-1/2 mb-4"></div>
-        <div className="h-10 bg-gray-300 rounded w-32 mt-4"></div>
+    <div className="bg-white rounded-lg shadow-md animate-pulse overflow-hidden">
+        <div className="w-full h-48 bg-gray-300"></div>
+        <div className="p-4">
+            <div className="h-8 bg-gray-300 rounded w-3/4 mb-2"></div>
+            <div className="h-4 bg-gray-200 rounded w-1/4 mb-4"></div>
+            <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+        </div>
     </div>
 );
 
-const GymCard = ({ gym, onCardClick, isActive }) => (
-    <div 
-        onClick={() => onCardClick(gym)}
-        className={`bg-white rounded-2xl shadow-md p-5 transition-all duration-300 cursor-pointer ${isActive ? 'ring-2 ring-orange-500 shadow-xl' : 'hover:shadow-lg hover:-translate-y-1'}`}
-    >
-        <h3 className="text-lg font-bold text-gray-900">{gym.nama}</h3>
-        <p className="text-gray-600 mt-1 text-sm flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1.5 text-gray-400 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-            </svg>
-            <span>{gym.location}</span>
-        </p>
-        <a
-            href={gym.gmaps_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="mt-4 inline-flex items-center bg-gray-900 text-white font-semibold px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors self-start text-sm"
-        >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-            Buka di Peta
-        </a>
+// === Komponen BARU: FeaturedGymCard ===
+const FeaturedGymCard = ({ gym }) => (
+    <div className="bg-white rounded-lg shadow-lg overflow-hidden md:flex transition-transform duration-300 hover:shadow-xl">
+        <div className="md:w-2/5">
+            <img
+                src={gym.foto_url || 'https://via.placeholder.com/600x400.png?text=Image+Not+Available'}
+                alt={`Foto ${gym.nama}`}
+                className="w-full h-64 md:h-full object-cover"
+                loading="lazy"
+            />
+        </div>
+        <div className="p-6 md:w-3/5 flex flex-col justify-center">
+            <p className="text-orange-500 font-semibold text-sm uppercase">Pilihan Terdekat</p>
+            <h3 className="text-3xl font-bold text-gray-900 mt-1" title={gym.nama}>
+                {gym.nama}
+            </h3>
+            {gym.jarak !== undefined && (
+                <p className="text-lg text-gray-600 mt-2">{gym.jarak} km dari lokasi Anda</p>
+            )}
+            <div className="border-t my-4"></div>
+            {/* INI BAGIAN YANG DIUBAH */}
+            <p className="text-base text-gray-700">
+                <span className="font-semibold text-gray-800">Alamat Lengkap: </span>
+                <span>{gym.alamat_lengkap}</span>
+            </p>
+        </div>
     </div>
 );
+
+
+// === Komponen GymCard (Untuk Gym Lainnya) ===
+const GymCard = ({ gym }) => (
+    <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1 flex flex-col">
+        <img
+            src={gym.foto_url || 'https://via.placeholder.com/400x250.png?text=Image+Not+Available'}
+            alt={`Foto ${gym.nama}`}
+            className="w-full h-48 object-cover"
+            loading="lazy"
+        />
+        <div className="p-4 flex flex-col flex-grow">
+            <h3 className="text-2xl font-bold text-gray-900 truncate" title={gym.nama}>
+                {gym.nama}
+            </h3>
+            {gym.jarak !== undefined && (
+                 <p className="text-md text-gray-600 mt-1">{gym.jarak} km</p>
+            )}
+            {/* INI BAGIAN YANG DIUBAH */}
+            <p className="text-sm text-gray-700 mt-4">
+                <span className="font-semibold text-gray-800">Alamat Lengkap: </span>
+                <span>{gym.alamat_lengkap}</span>
+            </p>
+        </div>
+    </div>
+);
+
 
 // === Komponen Utama: GymFinder ===
 const GymFinder = () => {
@@ -54,15 +86,12 @@ const GymFinder = () => {
     const [selectedLocation, setSelectedLocation] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [activeGym, setActiveGym] = useState(null);
-
-    // Variabel API Key sudah tidak diperlukan lagi
-    // const GOOGLE_MAPS_API_KEY = "INI TIDAK DIPAKAI";
 
     const API_BASE_URL = process.env.NODE_ENV === 'production'
         ? 'https://healthmate-backend-new.onrender.com/api'
         : 'http://localhost:5000/api';
 
+    // useEffect untuk fetchLocations tidak berubah
     useEffect(() => {
         const fetchLocations = async () => {
             try {
@@ -77,14 +106,9 @@ const GymFinder = () => {
         fetchLocations();
     }, [API_BASE_URL]);
 
+    // useEffect untuk fetchGymsByLocation tidak berubah
     useEffect(() => {
-        setGyms([]);
-        setActiveGym(null); 
-        
-        if (!selectedLocation) {
-            return;
-        }
-
+        if (!selectedLocation) return;
         const fetchGymsByLocation = async () => {
             setLoading(true);
             setError(null);
@@ -93,9 +117,6 @@ const GymFinder = () => {
                 if (!response.ok) throw new Error(`Gagal mengambil data gym`);
                 const data = await response.json();
                 setGyms(data);
-                if (data.length > 0) {
-                    setActiveGym(data[0]);
-                }
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -109,10 +130,10 @@ const GymFinder = () => {
         <section className="py-16 bg-gray-50">
             <div className="container mx-auto px-4 lg:px-8">
                 
-                {/* Header dan Kontrol Pencarian */}
+                {/* Header dan Kontrol Pencarian tidak berubah */}
                 <div className="text-center mb-12">
                     <h5 className="text-orange-500 font-semibold text-sm uppercase tracking-wider mb-2">FIND YOUR GYM</h5>
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Temukan Gym Terdekat Anda</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Temukan Gym di Lokasi Anda</h2>
                     <div className="bg-white rounded-2xl shadow-lg p-6 max-w-md mx-auto">
                         <label htmlFor="location-select" className="flex items-center mb-4 text-gray-700 font-medium">
                             <span className="text-red-500 mr-2" style={{ fontSize: '20px' }}>📍</span>
@@ -125,61 +146,41 @@ const GymFinder = () => {
                     </div>
                 </div>
 
-                {/* Konten Utama (Daftar & Peta) */}
-                <div className="lg:grid lg:grid-cols-12 lg:gap-8">
-                    <div className="lg:col-span-5">
-                        {/* Status Display */}
-                        {error && <StatusDisplay icon="😢" title="Terjadi Kesalahan" message={error} />}
-                        {!selectedLocation && !error && <StatusDisplay icon="👇" title="Mulai Mencari" message="Silakan pilih lokasi di atas untuk menampilkan daftar gym yang tersedia." />}
-                        {loading && (
-                             <div className="space-y-4"><h3 className="text-2xl font-bold text-gray-900 animate-pulse">Mencari gym...</h3><GymCardSkeleton /><GymCardSkeleton /><GymCardSkeleton /></div>
-                        )}
-                        {!loading && selectedLocation && gyms.length === 0 && !error && <StatusDisplay icon="🤷‍♂️" title="Tidak Ada Hasil" message={`Kami tidak dapat menemukan gym di ${selectedLocation}. Coba lokasi lain.`} />}
-                        
-                        {!loading && gyms.length > 0 && (
-                            <div>
-                                <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                                    Hasil di {selectedLocation}
-                                </h3>
-                                <div className="space-y-6">
-                                    {gyms.map((gym) => (
-                                        <div key={gym.id}>
-                                            <p className="text-gray-700 mb-2 text-base">
-                                                Tampilan gym {gym.nama}
-                                            </p>
-                                            <GymCard 
-                                                gym={gym} 
-                                                onCardClick={setActiveGym}
-                                                isActive={activeGym && activeGym.id === gym.id}
-                                            />
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-                    </div>
+                {/* Konten Utama: Daftar Gym */}
+                <div className="mt-12">
+                    {/* Status Loading, Error, dan Pesan Awal */}
+                    {error && <StatusDisplay icon="😢" title="Terjadi Kesalahan" message={error} />}
+                    {!selectedLocation && !error && <StatusDisplay icon="👇" title="Mulai Mencari" message="Silakan pilih lokasi di atas untuk menampilkan daftar gym." />}
+                    {loading && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <GymCardSkeleton /> <GymCardSkeleton /> <GymCardSkeleton />
+                        </div>
+                    )}
+                    {!loading && selectedLocation && gyms.length === 0 && !error && (
+                        <StatusDisplay icon="🤷‍♂️" title="Tidak Ada Hasil" message={`Kami tidak dapat menemukan gym di ${selectedLocation}. Coba lokasi lain.`} />
+                    )}
+                    
+                    {!loading && gyms.length > 0 && (
+                        <div>
+                            {/* Tampilkan Featured Card untuk gym pertama */}
+                            <FeaturedGymCard gym={gyms[0]} />
 
-                    {/* === Kolom Peta dengan Google Maps iFrame TANPA API KEY === */}
-                    <div className="lg:col-span-7 mt-8 lg:mt-0">
-                       <div className="h-[600px] lg:sticky lg:top-24 rounded-2xl shadow-lg overflow-hidden bg-gray-200 flex items-center justify-center">
-                            {activeGym ? (
-                                <iframe
-                                    key={activeGym.id} // <-- Menambahkan key agar iframe dirender ulang saat gym berubah
-                                    title={`Peta Lokasi ${activeGym.nama}`}
-                                    width="100%"
-                                    height="100%"
-                                    style={{ border: 0 }}
-                                    loading="lazy"
-                                    allowFullScreen
-                                    // === INI ADALAH PERUBAHAN UTAMA ===
-                                    src={`https://maps.google.com/maps?q=${activeGym.latitude},${activeGym.longitude}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
-                                >
-                                </iframe>
-                            ) : (
-                                <p className="text-gray-500 font-medium px-4 text-center">Pilih gym dari daftar untuk melihat lokasi di peta.</p>
+                            {/* Jika ada lebih dari satu gym, tampilkan sisanya dalam grid */}
+                            {gyms.length > 1 && (
+                                <>
+                                    <h3 className="text-2xl font-bold text-gray-800 mt-12 mb-6">
+                                        Gym Lainnya di {selectedLocation}
+                                    </h3>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                        {/* Gunakan .slice(1) untuk mengambil semua gym KECUALI yang pertama */}
+                                        {gyms.slice(1).map((gym) => (
+                                            <GymCard key={gym.id} gym={gym} />
+                                        ))}
+                                    </div>
+                                </>
                             )}
-                       </div>
-                    </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </section>

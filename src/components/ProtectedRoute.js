@@ -1,17 +1,29 @@
-import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+// src/components/ProtectedRoute.js
 
-const ProtectedRoute = () => {
-    const { isAuthenticated } = useAuth();
+import { Navigate, useLocation } from "react-router-dom";
 
-    if (!isAuthenticated) {
-        // Jika tidak terotentikasi, arahkan ke halaman login
-        return <Navigate to="/login" replace />;
-    }
+// Fungsi sederhana untuk memeriksa status login.
+// Di dunia nyata, ini bisa lebih kompleks (misal: validasi token ke server).
+const isAuthenticated = () => {
+  // Kita periksa apakah ada 'userToken' di localStorage.
+  // Ini adalah cara paling umum untuk menyimpan status login di client-side.
+  return localStorage.getItem('userToken') !== null;
+};
 
-    // Jika terotentikasi, render komponen anak (dalam kasus kita, MainLayout)
-    return <Outlet />;
+const ProtectedRoute = ({ children }) => {
+  const location = useLocation();
+
+  // Jika pengguna TIDAK terotentikasi...
+  if (!isAuthenticated()) {
+    // ...arahkan (redirect) mereka ke halaman login.
+    // 'replace' mencegah pengguna kembali ke halaman sebelumnya dengan tombol 'back' browser.
+    // 'state={{ from: location }}' menyimpan halaman yang ingin mereka tuju,
+    // agar setelah login bisa langsung diarahkan ke sana.
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  // Jika pengguna SUDAH terotentikasi, tampilkan konten yang seharusnya (children).
+  return children;
 };
 
 export default ProtectedRoute;

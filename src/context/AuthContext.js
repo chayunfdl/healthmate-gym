@@ -1,5 +1,3 @@
-// --- File: src/context/AuthContext.js (PASTIKAN KODE ANDA PERSIS SEPERTI INI) ---
-
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -24,9 +22,9 @@ const handleApiResponse = async (response) => {
     return data;
 };
 
-// PASTIKAN ADA KATA 'export' DI SINI
 export const AuthProvider = ({ children }) => {
-    const [token, setToken] = useState(localStorage.getItem('authToken'));
+    // Gunakan 'authToken' sebagai key agar konsisten dengan yang Anda berikan
+    const [token, setToken] = useState(localStorage.getItem('authToken')); 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -38,6 +36,7 @@ export const AuthProvider = ({ children }) => {
             if (storedToken) {
                 setToken(storedToken);
             }
+            // Hentikan loading setelah pengecekan selesai
             setLoading(false);
         };
         verifyToken();
@@ -54,9 +53,9 @@ export const AuthProvider = ({ children }) => {
             });
             const data = await handleApiResponse(response);
             setToken(data.token);
-            setUser(data.user || null);
+            setUser(data.user || null); // Simpan info user jika ada
             localStorage.setItem('authToken', data.token);
-            navigate('/');
+            navigate('/home'); // <-- UBAH KE /home
         } catch (err) {
             setError(err.message);
         } finally {
@@ -68,13 +67,14 @@ export const AuthProvider = ({ children }) => {
         setLoading(true);
         setError(null);
         try {
-            await fetch(`${API_BASE_URL}/auth/register`, {
+            const response = await fetch(`${API_BASE_URL}/auth/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password }),
             });
+            await handleApiResponse(response); // Cukup periksa apakah sukses
             alert('Registration successful! Please log in.');
-            navigate('/login');
+            navigate('/login'); // Arahkan ke login setelah daftar
         } catch (err) {
             setError(err.message);
         } finally {
@@ -86,24 +86,21 @@ export const AuthProvider = ({ children }) => {
         setToken(null);
         setUser(null);
         localStorage.removeItem('authToken');
-        navigate('/login');
+        navigate('/login'); // <-- UBAH KE /login
     };
 
+    // isAuthenticated dihitung berdasarkan keberadaan token
     const isAuthenticated = !!token;
 
     const value = {
         token, user, isAuthenticated, loading, error,
         login, signup, logout,
     };
-
-    if (loading && !user && !['/login', '/signup'].includes(window.location.pathname)) {
-        return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>Loading...</div>;
-    }
-
+    
+    // Hapus kondisi loading yang lama, biarkan routing yang mengatur
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-// PASTIKAN ADA KATA 'export' DI SINI JUGA
 export const useAuth = () => {
     return useContext(AuthContext);
 };

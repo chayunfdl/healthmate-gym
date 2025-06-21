@@ -1,12 +1,9 @@
-// --- File: src/components/Login.js (Diperbarui untuk menggunakan Username) ---
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { IMAGES } from '../constants/theme';
 
 const Login = () => {
-    // --- PERUBAHAN 1: State diubah dari 'email' menjadi 'username' ---
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     
@@ -15,12 +12,10 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // --- PERUBAHAN 2: Validasi dan pemanggilan fungsi login menggunakan 'username' ---
         if (!username || !password) {
             alert('Please enter username and password');
             return;
         }
-        // Fungsi login sekarang dipanggil dengan username
         await login(username, password);
     };
 
@@ -38,25 +33,24 @@ const Login = () => {
                                 {error && <div className="alert alert-danger">{error}</div>}
                                 <form onSubmit={handleSubmit}>
                                     <div className="mb-3">
-                                        {/* --- PERUBAHAN 3: Label diubah menjadi 'Username' --- */}
                                         <label className="form-label">Username</label>
                                         <input
-                                            // --- PERUBAHAN 4: Atribut input disesuaikan untuk username ---
-                                            type="text" // type diubah dari 'email' menjadi 'text'
+                                            type="text"
                                             className="form-control"
                                             value={username}
                                             onChange={(e) => setUsername(e.target.value)}
                                             placeholder="Your Username"
                                         />
                                     </div>
+                                    {/* --- INI BAGIAN YANG DIPERBAIKI --- */}
                                     <div className="mb-3">
-                                        <label className="form-label">Email</label>
+                                        <label className="form-label">Password</label>
                                         <input
                                             type="password"
                                             className="form-control"
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
-                                            placeholder="Your Email"
+                                            placeholder="Your Password"
                                         />
                                     </div>
                                     <div className="text-center">

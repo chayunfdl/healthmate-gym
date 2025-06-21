@@ -19,24 +19,6 @@ const Header = () => {
         <div className="top-bar">
           <div className="container">
             <div className="dz-topbar-inner d-flex justify-content-between align-items-center">
-              <div className="dz-topbar-left">
-                <ul>
-                  <li>
-                    <i className="fa-regular fa-envelope"></i> info@example.com
-                  </li>
-                </ul>
-              </div>
-              <div className="dz-topbar-right">
-                <ul>
-                  <li>
-                    <i className="fa-regular fa-clock"></i> Time 06:00 AM To
-                    08:00 PM
-                  </li>{" "}
-                  <li>
-                    <i className="fa fa-phone"></i> +91-1234567890
-                  </li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>
@@ -139,7 +121,7 @@ export const Mainheader = () => {
 
   // Handler untuk Home link tanpa scroll
   const handleHomeClick = (e) => {
-    if (location.pathname === '/') {
+    if (location.pathname === '/home') {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
