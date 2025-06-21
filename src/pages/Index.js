@@ -1,7 +1,7 @@
 // src/routes/Index.js
 
 import { useEffect, useState } from "react";
-import { Route, Routes, Outlet } from "react-router-dom";
+import { Route, Routes, Outlet, Navigate } from "react-router-dom";
 
 // Layouts
 import { Mainheader } from "./../layouts/Header";
@@ -32,14 +32,16 @@ import ProtectedRoute from "../components/ProtectedRoute";
 function Index() {
   return (
     <Routes>
-      {/* == RUTE PUBLIK == */}
-      {/* Bisa diakses siapa saja, kapan saja, tanpa login */}
-      <Route path="/" element={<Login />} />
+      {/* == 1. RUTE PUBLIK (UNTUK OTENTIKASI) == */}
+      {/* Hanya bisa diakses jika belum login. */}
+      {/* Path utama untuk login sekarang adalah /login */}
+      <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/under-maintenance" element={<UnderConstruction />} />
 
-      {/* == RUTE TERLINDUNGI == */}
-      {/* Semua rute di dalam sini akan dicek oleh ProtectedRoute */}
+      {/* == 2. RUTE TERLINDUNGI (SEMUA HALAMAN APLIKASI) == */}
+      {/* Semua rute di dalam sini WAJIB login. */}
+      {/* Jika belum login dan mencoba akses, akan diarahkan ke /login oleh ProtectedRoute. */}
       <Route
         element={
           <ProtectedRoute>
@@ -47,8 +49,11 @@ function Index() {
           </ProtectedRoute>
         }
       >
+        {/* Halaman Home sekarang ada di path root '/' dan '/home' */}
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
+
+        {/* Semua halaman lainnya juga dilindungi */}
         <Route path="/services" element={<Services />} />
         <Route path="/find-gym" element={<FindGym />} />
         <Route path="/services-details" element={<ServicesDetails />} />
@@ -62,14 +67,14 @@ function Index() {
         <Route path="/appointment" element={<Appointment />} />
       </Route>
 
-      {/* == RUTE FALLBACK / CATCH-ALL == */}
+      {/* == 3. RUTE FALLBACK / CATCH-ALL == */}
       {/* Tampil jika URL tidak cocok dengan rute mana pun di atas */}
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
 }
 
-// Layout utama untuk halaman-halaman yang dilindungi
+// Layout utama untuk halaman-halaman yang dilindungi (TIDAK PERLU DIUBAH)
 function MainLayout() {
   const [headerFix, setheaderFix] = useState(false);
 

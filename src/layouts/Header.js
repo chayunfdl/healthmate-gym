@@ -165,22 +165,6 @@ export const Mainheader = () => {
             </div>
             {/* <!-- Extra Nav --> */}
 
-            {/* <!-- Search Form --> */}
-            <div className="dz-quik-search">
-              <form action="#">
-                <input
-                  name="search"
-                  defaultValue=""
-                  type="text"
-                  className="form-control"
-                  placeholder="Enter Your Keyword ..."
-                />
-                <span id="quik-search-remove">
-                  <i className="fa-solid fa-xmark"></i>
-                </span>
-              </form>
-            </div>
-
             {/* <!-- Header Nav --> */}
             <div
               id="navbarNavDropdown"

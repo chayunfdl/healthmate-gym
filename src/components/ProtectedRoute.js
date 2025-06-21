@@ -5,9 +5,9 @@ import { Navigate, useLocation } from "react-router-dom";
 // Fungsi sederhana untuk memeriksa status login.
 // Di dunia nyata, ini bisa lebih kompleks (misal: validasi token ke server).
 const isAuthenticated = () => {
-  // Kita periksa apakah ada 'userToken' di localStorage.
-  // Ini adalah cara paling umum untuk menyimpan status login di client-side.
-  return localStorage.getItem('userToken') !== null;
+  // Kita periksa apakah ada 'authToken' di localStorage.
+  // Kunci ini HARUS SAMA dengan yang disimpan saat login di AuthContext.
+  return localStorage.getItem('authToken') !== null;
 };
 
 const ProtectedRoute = ({ children }) => {
