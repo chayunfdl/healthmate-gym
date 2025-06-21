@@ -1,0 +1,11 @@
+/* File: src/index.css */
+
+/* Import Tailwind CSS directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Leaflet CSS (wajib untuk tampilan peta yang benar) */
+@import 'leaflet/dist/leaflet.css';
+
+/* (Tambahkan gaya global lain jika perlu) */

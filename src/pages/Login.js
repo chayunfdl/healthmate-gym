@@ -50,13 +50,13 @@ const Login = () => {
                                         />
                                     </div>
                                     <div className="mb-3">
-                                        <label className="form-label">Password</label>
+                                        <label className="form-label">Email</label>
                                         <input
                                             type="password"
                                             className="form-control"
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
-                                            placeholder="Your Password"
+                                            placeholder="Your Email"
                                         />
                                     </div>
                                     <div className="text-center">
