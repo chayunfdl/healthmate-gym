@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # HealthMate Gym 🏋️‍♂️
 HealthMate Gym adalah sistem manajemen gym modern yang dirancang untuk membantu pengelolaan gym, member, dan program fitness secara efisien dan terintegrasi.
 ## ✨ Fitur Utama
@@ -17,3 +18,6 @@ Nama: Chayun Fadila
 NRP: 6026242011
 
 GitHub: @chayunfdl
+=======
+# healthmate-gym
+>>>>>>> bc357043876ef1872fac18b13f6e8f1fc376e795

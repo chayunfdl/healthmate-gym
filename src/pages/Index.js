@@ -1,7 +1,11 @@
 // src/routes/Index.js
 
 import { useEffect, useState } from "react";
+<<<<<<< HEAD
 import { Route, Routes, Outlet, Navigate } from "react-router-dom";
+=======
+import { Route, Routes, Outlet } from "react-router-dom";
+>>>>>>> bc357043876ef1872fac18b13f6e8f1fc376e795
 
 // Layouts
 import { Mainheader } from "./../layouts/Header";
@@ -32,6 +36,7 @@ import ProtectedRoute from "../components/ProtectedRoute";
 function Index() {
   return (
     <Routes>
+<<<<<<< HEAD
       {/* == 1. RUTE PUBLIK (UNTUK OTENTIKASI) == */}
       {/* Hanya bisa diakses jika belum login. */}
       {/* Path utama untuk login sekarang adalah /login */}
@@ -42,6 +47,16 @@ function Index() {
       {/* == 2. RUTE TERLINDUNGI (SEMUA HALAMAN APLIKASI) == */}
       {/* Semua rute di dalam sini WAJIB login. */}
       {/* Jika belum login dan mencoba akses, akan diarahkan ke /login oleh ProtectedRoute. */}
+=======
+      {/* == RUTE PUBLIK == */}
+      {/* Bisa diakses siapa saja, kapan saja, tanpa login */}
+      <Route path="/" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/under-maintenance" element={<UnderConstruction />} />
+
+      {/* == RUTE TERLINDUNGI == */}
+      {/* Semua rute di dalam sini akan dicek oleh ProtectedRoute */}
+>>>>>>> bc357043876ef1872fac18b13f6e8f1fc376e795
       <Route
         element={
           <ProtectedRoute>
@@ -49,11 +64,16 @@ function Index() {
           </ProtectedRoute>
         }
       >
+<<<<<<< HEAD
         {/* Halaman Home sekarang ada di path root '/' dan '/home' */}
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
 
         {/* Semua halaman lainnya juga dilindungi */}
+=======
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+>>>>>>> bc357043876ef1872fac18b13f6e8f1fc376e795
         <Route path="/services" element={<Services />} />
         <Route path="/find-gym" element={<FindGym />} />
         <Route path="/services-details" element={<ServicesDetails />} />
@@ -67,14 +87,22 @@ function Index() {
         <Route path="/appointment" element={<Appointment />} />
       </Route>
 
+<<<<<<< HEAD
       {/* == 3. RUTE FALLBACK / CATCH-ALL == */}
+=======
+      {/* == RUTE FALLBACK / CATCH-ALL == */}
+>>>>>>> bc357043876ef1872fac18b13f6e8f1fc376e795
       {/* Tampil jika URL tidak cocok dengan rute mana pun di atas */}
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
 }
 
+<<<<<<< HEAD
 // Layout utama untuk halaman-halaman yang dilindungi (TIDAK PERLU DIUBAH)
+=======
+// Layout utama untuk halaman-halaman yang dilindungi
+>>>>>>> bc357043876ef1872fac18b13f6e8f1fc376e795
 function MainLayout() {
   const [headerFix, setheaderFix] = useState(false);
 
